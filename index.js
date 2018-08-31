@@ -64,10 +64,10 @@ class index {
         inquirer.prompt(this.typeQuestionsList).then(answers => {
             switch (answers.selection) {
                 case 0:
-                    this.getTemplateList(templatePath, that.templateQuestionsList);
+                    this.getTemplateList(templatePath, that.templateQuestionsList, 0);
                     break;
                 case 1:
-                    this.getTemplateList(componentPath, that.componentQuestionsList);
+                    this.getTemplateList(componentPath, that.componentQuestionsList, 1);
                     break;
                 case 2:
                     inquirer.prompt(that.httpPortInput).then(answers => {
@@ -80,12 +80,23 @@ class index {
         });
     }
     // 获取模板列表
-    getTemplateList(path, questions) {
+    getTemplateList(path, questions, type) {
         let templateList = [];
+        let infoType = null;
+        switch (type) {
+            case 0:
+                infoType = textInfo.template;
+                break;
+            case 1:
+                infoType = textInfo.components;
+                break;
+            default:
+                break;
+        }
         fs.readdir(path, function(err, files) {
             templateList = files;
             for (let i in templateList) {
-                let info = textInfo.template[templateList[i]] ? chalk.magenta(textInfo.template[templateList[i]]) : '';
+                let info = infoType[templateList[i]] ? chalk.magenta(infoType[templateList[i]]) : '';
                 templateList[i] = {
                     name: templateList[i] + ' ' + info,
                     value: templateList[i]
