@@ -1,0 +1,13 @@
+{
+    "components": {
+        "Body": "Body组件",
+        "Footer": "Footer组件",
+        "Header": "Header组件"
+    },
+    "template": {
+        "React": "React+less",
+        "Simple": "html+jQuery",
+        "React_Redux": "React_Redux",
+        "React_Admin": "React_Admin"
+    }
+}

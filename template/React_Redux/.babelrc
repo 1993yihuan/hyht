@@ -1,0 +1,7 @@
+{
+    "presets": ["react-app"],
+    "plugins": [
+        "transform-decorators-legacy",
+        "transform-async-to-generator"
+    ]
+}
