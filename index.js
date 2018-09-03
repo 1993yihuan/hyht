@@ -10,7 +10,7 @@ const infos = require('./src/info');
 const server = require('./src/server');
 class index {
     constructor() {
-        // infos();
+        infos();
         // 类型选择
         this.typeQuestionsList = [
             {
