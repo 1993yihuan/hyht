@@ -1,6 +1,6 @@
 {
     "name": "hyht",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "hyh file template",
     "main": "index.js",
     "bin": {
