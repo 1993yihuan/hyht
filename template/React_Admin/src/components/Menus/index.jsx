@@ -8,10 +8,14 @@ class index extends Component {
     constructor(props) {
         super(props);
         this.menus = menus;
+        this.defaultPath = [];
         this.initActive(this.menus);
         this.state = {
             menus: this.menus
         };
+    }
+    componentDidMount() {
+        this.menuItemEvent(this.defaultPath);
     }
     initActive(data) {
         data.map(item => {
@@ -37,8 +41,9 @@ class index extends Component {
             if (!tmpMenus[item].children && key === pathIndex.length - 1) {
                 this.cleanNodeActive(this.state.menus);
                 tmpMenus[item].nodeActive = true;
-                console.log('route', route);
-                this.props.history.push(route);
+                if (route) {
+                    this.props.history.push(route);
+                }
             }
             return (tmpMenus = tmpMenus[item].children);
         });
@@ -54,6 +59,9 @@ class index extends Component {
                         let path = deepCopy(pathIndex);
                         path.push(index);
                         let children = item.children ? this.recursion(item.children, item.active, path, tag + 1) : '';
+                        if (this.props.location.pathname === '/' + item.route) {
+                            this.defaultPath = path;
+                        }
                         return (
                             <div key={index}>
                                 <div
